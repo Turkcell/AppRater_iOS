@@ -3,6 +3,7 @@ AppRater is library for iOS for prompting users to rate your app on iTunes. It w
 
 It supports iOS 5/6/7;
 
+![Example Image ios6][1] ![Example Image ios7][2]
 
 ##Usage
 Simply drag AppRater.h, .m files into your project and add this line to your appDelegate:
@@ -45,4 +46,7 @@ Set this to YES if you want to re-run your prompt scenario after a new version o
 Set this to YES if you want to force user to rate your application now or later. The default value is NO.
 
 ##TODO
--Add localisation support (there is only harcoded Turkish stings)
+-Add localisation support
+
+ [1]: https://raw.github.com/Turkcell/AppRater_iOS/master/ScreenShots/ios6.png
+ [2]: https://raw.github.com/Turkcell/AppRater_iOS/master/ScreenShots/ios7.png
