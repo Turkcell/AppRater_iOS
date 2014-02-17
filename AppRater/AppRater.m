@@ -341,8 +341,7 @@
         return;
     }
     
-    __block NSString *bundleIdentifier = @"com.turkcell.guvenlik";
-//    [[NSBundle mainBundle] bundleIdentifier];
+    __block NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:AppStoreLookUpURL, bundleIdentifier]]];
