@@ -29,6 +29,7 @@
 @property (nonatomic) NSInteger remindMeLaunchesUntilPrompt;
 @property (nonatomic) BOOL versionCheckEnabled;
 @property (nonatomic) BOOL hideNoButton;
+@property (nonatomic, strong) NSString *preferredLanguage;
 
 -(void)appLaunched;
 

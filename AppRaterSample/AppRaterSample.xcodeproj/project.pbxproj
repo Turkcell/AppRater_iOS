@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB31008418B1FC070003A0A8 /* AppRater.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EB31008318B1FC070003A0A8 /* AppRater.bundle */; };
 		EBB9FB7E18ACB5FF00393831 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB9FB7D18ACB5FF00393831 /* Foundation.framework */; };
 		EBB9FB8018ACB5FF00393831 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB9FB7F18ACB5FF00393831 /* CoreGraphics.framework */; };
 		EBB9FB8218ACB5FF00393831 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB9FB8118ACB5FF00393831 /* UIKit.framework */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB31008318B1FC070003A0A8 /* AppRater.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppRater.bundle; sourceTree = "<group>"; };
 		EBB9FB7A18ACB5FF00393831 /* AppRaterSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppRaterSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB9FB7D18ACB5FF00393831 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EBB9FB7F18ACB5FF00393831 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -135,6 +137,7 @@
 		EBB9FBB218ACB71200393831 /* AppRater */ = {
 			isa = PBXGroup;
 			children = (
+				EB31008318B1FC070003A0A8 /* AppRater.bundle */,
 				EBB9FBB318ACB71200393831 /* AppRater.h */,
 				EBB9FBB418ACB71200393831 /* AppRater.m */,
 			);
@@ -201,6 +204,7 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = EBB9FB7118ACB5FF00393831;
 			productRefGroup = EBB9FB7B18ACB5FF00393831 /* Products */;
@@ -220,6 +224,7 @@
 			files = (
 				EBB9FB9618ACB5FF00393831 /* Images.xcassets in Resources */,
 				EBB9FB8818ACB5FF00393831 /* InfoPlist.strings in Resources */,
+				EB31008418B1FC070003A0A8 /* AppRater.bundle in Resources */,
 				EBB9FB9118ACB5FF00393831 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

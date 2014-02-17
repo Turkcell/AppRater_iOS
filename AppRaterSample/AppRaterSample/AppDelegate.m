@@ -27,9 +27,10 @@
     // Override point for customization after application launch.
     
     [AppRater sharedInstance].daysUntilPrompt = 0;
-    [AppRater sharedInstance].launchesUntilPrompt = 3;
-    [AppRater sharedInstance].remindMeDaysUntilPrompt = 3;
-    [AppRater sharedInstance].remindMeLaunchesUntilPrompt = 5;
+    [AppRater sharedInstance].launchesUntilPrompt = 0;
+    [AppRater sharedInstance].remindMeDaysUntilPrompt = 0;
+    [AppRater sharedInstance].remindMeLaunchesUntilPrompt = 0;
+    [AppRater sharedInstance].preferredLanguage = @"ru";
     [[AppRater sharedInstance] appLaunched];
     
     return YES;

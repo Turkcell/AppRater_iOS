@@ -44,7 +44,9 @@
 
 @implementation AppRater
 
-@synthesize daysUntilPrompt, launchesUntilPrompt, versionCheckEnabled, remindMeDaysUntilPrompt, remindMeLaunchesUntilPrompt, hideNoButton;
+@synthesize daysUntilPrompt, launchesUntilPrompt,
+            versionCheckEnabled, remindMeDaysUntilPrompt,
+            remindMeLaunchesUntilPrompt, hideNoButton, preferredLanguage;
 
 /**
  *  Creates static AppRater object and sets default values
@@ -62,6 +64,7 @@
         sharedInstance.remindMeLaunchesUntilPrompt = 7;
         sharedInstance.versionCheckEnabled = NO;
         sharedInstance.hideNoButton = NO;
+        sharedInstance.preferredLanguage = nil;
     });
     return sharedInstance;
 }
@@ -249,10 +252,10 @@
     UIAlertView *rateDialog = nil;
     NSString *noButtonTitle = nil;
     if (!hideNoButton) {
-        noButtonTitle = @"Hayır";
+        noButtonTitle = [self getLocalisedStringForKey:@"NoButtonTitle"];
     }
     
-    rateDialog = [[UIAlertView alloc] initWithTitle:@"Derecelendir" message:@"Bu uygulamayı beğendiyseniz lütfen derecelendirin. Desteğiniz için teşekkürler." delegate:self cancelButtonTitle:noButtonTitle otherButtonTitles:@"Şimdi", @"Sonra", nil];
+    rateDialog = [[UIAlertView alloc] initWithTitle:[self getLocalisedStringForKey:@"MessageTitle"] message:[self getLocalisedStringForKey:@"Message"] delegate:self cancelButtonTitle:noButtonTitle otherButtonTitles:[self getLocalisedStringForKey:@"NowButtonTitle"], [self getLocalisedStringForKey:@"LaterButtonTitle"], nil];
     [rateDialog show];
     
 }
@@ -338,7 +341,8 @@
         return;
     }
     
-    __block NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    __block NSString *bundleIdentifier = @"com.turkcell.guvenlik";
+//    [[NSBundle mainBundle] bundleIdentifier];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:AppStoreLookUpURL, bundleIdentifier]]];
@@ -370,6 +374,41 @@
             
         });
     });
+}
+
+#pragma mark - Localisation Support
+
+/**
+ *  Localisation support. Gets localised string from language bundle.
+ *
+ *  @param key key of localised string
+ *
+ *  @return localised string
+ */
+-(NSString *)getLocalisedStringForKey:(NSString *)key {
+    
+    static NSBundle *bundle = nil;
+    
+    if (bundle == nil) {
+        bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"AppRater" ofType:@"bundle"]];
+    }
+    NSString *systemLocale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    static NSBundle *languageBundle = nil;
+    
+    if (preferredLanguage) {
+        if (![[bundle localizations] containsObject:preferredLanguage]) {
+            if (![[bundle localizations] containsObject:systemLocale]) {
+                NSLog(@"Preffered language is not avaible.");
+                systemLocale = @"en";
+            }
+        }else {
+            systemLocale = preferredLanguage;
+        }
+    }
+
+    languageBundle = [NSBundle bundleWithPath:[bundle pathForResource:systemLocale ofType:@"lproj"]];
+    return [languageBundle localizedStringForKey:key value:@"" table:nil];
 }
 
 #pragma mark - Dealloc
