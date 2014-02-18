@@ -38,7 +38,7 @@
  */
 #define iOS7AppStoreURL @"itms-apps://itunes.apple.com/app/id%@"
 #define AboveiOS7AppstoreURL @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@"
-#define AppStoreLookUpURL @"http://itunes.apple.com/tr/lookup?bundleId=%@"
+#define AppStoreLookUpURL @"http://itunes.apple.com/lookup?bundleId=%@"
 
 #define IS_IOS7 (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
 
@@ -341,7 +341,8 @@
         return;
     }
     
-    __block NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    __block NSString *bundleIdentifier = @"com.turkcell.guvenlik";
+//    [[NSBundle mainBundle] bundleIdentifier];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:AppStoreLookUpURL, bundleIdentifier]]];
@@ -398,7 +399,7 @@
     if (preferredLanguage) {
         if (![[bundle localizations] containsObject:preferredLanguage]) {
             if (![[bundle localizations] containsObject:systemLocale]) {
-                NSLog(@"Preffered language is not avaible.");
+                NSLog(@"Preferred language is not avaible.");
                 systemLocale = @"en";
             }
         }else {
