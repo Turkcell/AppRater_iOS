@@ -346,12 +346,18 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:AppStoreLookUpURL, bundleIdentifier]]];
         [request setTimeoutInterval:30.0];
-        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        NSError *error = nil;
+        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
         
         dispatch_async(dispatch_get_main_queue(), ^{
 
+            if (error) {
+                NSLog(@"Error getting response from iTunes: %@", error);
+                return;
+            }
+            
             NSError *e = nil;
-            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error: &e][@"results"];
+            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingAllowFragments error:&e][@"results"];
             
             if (!jsonArray) {
                 NSLog(@"Error parsing JSON: %@", e);
