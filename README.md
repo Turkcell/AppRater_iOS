@@ -1,7 +1,7 @@
 #AppRater
 AppRater is library for iOS for prompting users to rate your app on iTunes. It won't prompt until 3 days AND 7 launches by default. 
 
-It supports iOS 5/6/7;
+It supports iOS 5 and later.;
 
 ![Example Image ios6][1] ![Example Image ios7][2]
 
@@ -45,8 +45,10 @@ Set this to YES if you want to re-run your prompt scenario after a new version o
 ```
 Set this to YES if you want to force user to rate your application now or later. The default value is NO.
 
-##TODO
--Add localisation support
+```objective-c
+@property (nonatomic, strong) NSString *preferredLanguage;
+```
+Set preferred language on your prompt window. English and Turkish supported. Uses default locale, default value is "en".
 
  [1]: https://raw.github.com/Turkcell/AppRater_iOS/master/ScreenShots/ios6.png
  [2]: https://raw.github.com/Turkcell/AppRater_iOS/master/ScreenShots/ios7.png
