@@ -77,10 +77,8 @@
  */
 -(AppRater *)init {
     
-    if (&UIApplicationWillEnterForegroundNotification) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground)
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground)
                                                      name:UIApplicationWillEnterForegroundNotification object:nil];
-    }
     
     return self;
 }
