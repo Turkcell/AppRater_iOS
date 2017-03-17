@@ -31,6 +31,7 @@
     [AppRater sharedInstance].remindMeDaysUntilPrompt = 0;
     [AppRater sharedInstance].remindMeLaunchesUntilPrompt = 4;
     [AppRater sharedInstance].preferredLanguage = @"en";
+    [AppRater sharedInstance].countryCode = @"tr";
     [[AppRater sharedInstance] appLaunched];
     
     return YES;

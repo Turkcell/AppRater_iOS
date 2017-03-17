@@ -38,7 +38,7 @@
  */
 #define iOS7AppStoreURL @"itms-apps://itunes.apple.com/app/id%@"
 #define AboveiOS7AppstoreURL @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@"
-#define AppStoreLookUpURL @"http://itunes.apple.com/lookup?bundleId=%@"
+#define AppStoreLookUpURL @"http://itunes.apple.com/lookup?bundleId=%@&country=%@"
 
 #define IS_IOS7 (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
 
@@ -65,6 +65,7 @@
         sharedInstance.versionCheckEnabled = NO;
         sharedInstance.hideNoButton = NO;
         sharedInstance.preferredLanguage = nil;
+        sharedInstance.countryCode = @"tr";
     });
     return sharedInstance;
 }
@@ -342,7 +343,7 @@
     __block NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:AppStoreLookUpURL, bundleIdentifier]]];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:AppStoreLookUpURL, bundleIdentifier, self.countryCode]]];
         [request setTimeoutInterval:30.0];
         NSError *error = nil;
         NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
