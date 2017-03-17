@@ -1,11 +1,14 @@
-#AppRater
+**AppRater**
+--------
+
 AppRater is library for iOS for prompting users to rate your app on iTunes. It won't prompt until 3 days AND 7 launches by default. 
 
-It supports iOS 5 and later.;
+It supports iOS 5 and later;
 
 ![Example Image ios6][1] ![Example Image ios7][2]
 
-##Usage
+**Usage**
+
 Simply drag AppRater.h, .m files into your project and add this line to your appDelegate:
 ```objective-c
 [[AppRater sharedInstance] appLaunched];
@@ -13,7 +16,8 @@ Simply drag AppRater.h, .m files into your project and add this line to your app
 
 AppRater doesn't require configuration. Automatically checks your application's iTunes id with using application's bundle id. For more examples see sample application.
 
-##Configuration
+**Configuration**
+
 AppRater have several properties that can alter the AppRater's behaviour.
 ```objective-c
 @property (nonatomic) NSInteger daysUntilPrompt;
@@ -49,6 +53,11 @@ Set this to YES if you want to force user to rate your application now or later.
 @property (nonatomic, strong) NSString *preferredLanguage;
 ```
 Set preferred language on your prompt window. English and Turkish supported. Uses default locale, default value is "en".
+
+```objective-c
+@property (nonatomic, strong) NSString *countryCode;
+```
+Set application's available country for iTunes lookup service. See http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 for a list of ISO Country Codes.
 
  [1]: https://raw.github.com/Turkcell/AppRater_iOS/master/ScreenShots/ios6.png
  [2]: https://raw.github.com/Turkcell/AppRater_iOS/master/ScreenShots/ios7.png
