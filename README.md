@@ -57,7 +57,7 @@ Set preferred language on your prompt window. English and Turkish supported. Use
 ```objective-c
 @property (nonatomic, strong) NSString *countryCode;
 ```
-Set application's available country for iTunes lookup service. See http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 for a list of ISO Country Codes. Default value us "tr".
+Set application's available country for iTunes lookup service. See http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 for a list of ISO Country Codes. Default value is "tr".
 
  [1]: https://raw.github.com/Turkcell/AppRater_iOS/master/ScreenShots/ios6.png
  [2]: https://raw.github.com/Turkcell/AppRater_iOS/master/ScreenShots/ios7.png
