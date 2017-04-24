@@ -18,6 +18,7 @@
 
 
 #import "AppRater.h"
+#import <StoreKit/StoreKit.h>
 
 /**
  *  Defines for NSUserDefaults keys
@@ -46,7 +47,7 @@
 
 @synthesize daysUntilPrompt, launchesUntilPrompt,
             versionCheckEnabled, remindMeDaysUntilPrompt,
-            remindMeLaunchesUntilPrompt, hideNoButton, preferredLanguage;
+            remindMeLaunchesUntilPrompt, hideNoButton, preferredLanguage, usesSystemAppRaterWhenAvailable;
 
 /**
  *  Creates static AppRater object and sets default values
@@ -66,6 +67,7 @@
         sharedInstance.hideNoButton = NO;
         sharedInstance.preferredLanguage = nil;
         sharedInstance.countryCode = @"tr";
+        sharedInstance.usesSystemAppRaterWhenAvailable = YES;
     });
     return sharedInstance;
 }
@@ -88,7 +90,6 @@
  *  Public method checks rating prompt with given parameters version checking and remind me
  */
 -(void)appLaunched {
-    
     if (versionCheckEnabled) {
         if (![[self getCurrentVersion] isEqualToString:[self getStringFromDefaultsWithKey:APP_VERSION_KEY]]) {
             [self resetUserDefaultValues];
@@ -117,6 +118,9 @@
     [self setIntToDefaultsWithKey:LAUNCH_COUNT_KEY andValue:launchCount];
     
     if (launchCount >= launches && [self isDateExpired:days]) {
+        if ([self showSystemRater]) {
+            return;
+        }
         [self getApplicationID];
     }
 
@@ -256,7 +260,21 @@
     
     rateDialog = [[UIAlertView alloc] initWithTitle:[self getLocalisedStringForKey:@"MessageTitle"] message:[self getLocalisedStringForKey:@"Message"] delegate:self cancelButtonTitle:noButtonTitle otherButtonTitles:[self getLocalisedStringForKey:@"NowButtonTitle"], [self getLocalisedStringForKey:@"LaterButtonTitle"], nil];
     [rateDialog show];
-    
+}
+
+- (BOOL)showSystemRater {
+    if ([SKStoreReviewController class] && self.usesSystemAppRaterWhenAvailable) {
+        [SKStoreReviewController requestReview];
+
+        [self setBoolToDefaultsWithKey:DONT_SHOW_AGAIN_KEY andValue:NO];
+        [self setBoolToDefaultsWithKey:REMIND_ME_KEY andValue:YES];
+        [self setIntToDefaultsWithKey:LAUNCH_COUNT_KEY andValue:0];
+        [self setObjectToDefaultsWithKey:FIRST_LAUNCH_KEY andValue:[NSDate date]];
+
+        return YES;
+    }
+
+    return NO;
 }
 
 /**

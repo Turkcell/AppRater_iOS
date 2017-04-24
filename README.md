@@ -59,5 +59,10 @@ Set preferred language on your prompt window. English and Turkish supported. Use
 ```
 Set application's available country for iTunes lookup service. See http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 for a list of ISO Country Codes. Default value is "tr".
 
+```objective-c
+@property (nonatomic) BOOL usesSystemAppRaterWhenAvailable;
+```
+When this property is YES and iOS version is 10.3+ AppRater uses native `SKStoreReviewController`. Default value is YES. Calling `SKStoreReviewController` still depends on rules that are defined by configuration parameters such as `daysUntilPrompt`, `launchesUntilPrompt`, `remindMeDaysUntilPrompt` and `remindMeLaunchesUntilPrompt`.
+
  [1]: https://raw.github.com/Turkcell/AppRater_iOS/master/ScreenShots/ios6.png
  [2]: https://raw.github.com/Turkcell/AppRater_iOS/master/ScreenShots/ios7.png
