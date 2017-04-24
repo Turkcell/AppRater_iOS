@@ -31,6 +31,7 @@
 @property (nonatomic) BOOL hideNoButton;
 @property (nonatomic, strong) NSString *preferredLanguage;
 @property (nonatomic, strong) NSString *countryCode;
+@property (nonatomic) BOOL usesSystemAppRaterWhenAvailable;
 
 -(void)appLaunched;
 
