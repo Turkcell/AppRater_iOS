@@ -5,7 +5,9 @@ AppRater is library for iOS for prompting users to rate your app on iTunes. It w
 
 It supports iOS 5 and later;
 
-![Example Image ios6][1] ![Example Image ios7][2]
+![Example Image ios6][1]
+![Example Image ios7][2]
+![Example Image native][3]
 
 **Usage**
 
@@ -66,3 +68,4 @@ When this property is YES and iOS version is 10.3+ AppRater uses native `SKStore
 
  [1]: https://raw.github.com/Turkcell/AppRater_iOS/master/ScreenShots/ios6.png
  [2]: https://raw.github.com/Turkcell/AppRater_iOS/master/ScreenShots/ios7.png
+ [3]: https://github.com/Turkcell/AppRater_iOS/blob/master/ScreenShots/native.png
